@@ -30,7 +30,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+  gradient_borders: ^1.0.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -62,6 +62,15 @@ flutter:
   assets:
     - assets/Image/Movie/1.jpg
     - assets/logor/legend-cinema-logo.png
+    - assets/logor/legend-cinema-logo.png
+    - assets/Image/branch/eden.jpg
+    - assets/Image/branch/seihanok.jpg
+    - assets/Image/branch/squ.jpg
+    - assets/Image/branch/oly.jpg
+    - assets/Image/branch/noro.jpg
+    - assets/Image/branch/mid.jpg
+    - assets/Image/branch/meanchey.jpg
+    - assets/Image/branch/kmal.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
