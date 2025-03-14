@@ -145,227 +145,256 @@ class HomescreenStore extends State<Homescreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      scrollDirection: Axis.vertical,
-      child: Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        decoration: const BoxDecoration(
-          color: Color.fromARGB(255, 0, 0, 0),
-        ),
-        child: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          child: Container(
-            margin: const EdgeInsets.fromLTRB(0, 0, 0, 100),
-            child: Column(
-              children: [
-                Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: 700,
-                  decoration: const BoxDecoration(
-                    color: Colors.red,
-                  ),
-                  child: Stack(
-                    children: [
-                      Image.asset(
-                        "assets/Image/Movie/1.jpg",
-                        width: double.infinity,
-                        height: double.infinity,
-                        fit: BoxFit.cover,
-                      ),
-                      ClipRect(
-                        child: BackdropFilter(
-                          filter: ImageFilter.blur(sigmaX: 8.0, sigmaY: 8.0),
-                          child: Container(
-                            color: Colors.black
-                                .withOpacity(0.1), // Adjust opacity as needed
+    return PopScope(
+      canPop: true,
+      onPopInvokedWithResult: (didPop, daynamic) async {
+        if (!didPop && !Navigator.canPop(context)) {
+          bool? shouldClose = await showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+              title: const Text("Exit App"),
+              content: Text("Do you want to close the app?"),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(context, false),
+                  child: const Text("No"),
+                ),
+                TextButton(
+                  onPressed: () => Navigator.pop(context, true),
+                  child: const Text("Yes"),
+                ),
+              ],
+            ),
+          );
+          if (shouldClose == true) {
+            // Allow the app to close (you might need SystemNavigator.pop() on Android)
+            print("App closing confirmed");
+            Navigator.of(context).pop();
+          }
+        }
+      },
+      child: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Container(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          decoration: const BoxDecoration(
+            color: Color.fromARGB(255, 0, 0, 0),
+          ),
+          child: SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: Container(
+              margin: const EdgeInsets.fromLTRB(0, 0, 0, 100),
+              child: Column(
+                children: [
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: 700,
+                    decoration: const BoxDecoration(
+                      color: Colors.red,
+                    ),
+                    child: Stack(
+                      children: [
+                        Image.asset(
+                          "assets/Image/Movie/1.jpg",
+                          width: double.infinity,
+                          height: double.infinity,
+                          fit: BoxFit.cover,
+                        ),
+                        ClipRect(
+                          child: BackdropFilter(
+                            filter: ImageFilter.blur(sigmaX: 8.0, sigmaY: 8.0),
+                            child: Container(
+                              color: Colors.black
+                                  .withOpacity(0.1), // Adjust opacity as needed
+                            ),
                           ),
                         ),
-                      ),
-                      Positioned(
-                        child: Container(
-                          margin: const EdgeInsets.fromLTRB(20, 60, 20, 20),
-                          width: double.infinity,
-                          child: Column(
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Image.asset(
-                                    "assets/logor/legend-cinema-logo.png",
-                                    width: 80,
-                                  ),
-                                  Row(
-                                    children: [
-                                      InkWell(
-                                        onTap: () {
-                                          onClickSearchCinema();
-                                        },
-                                        child: const Icon(
-                                          Icons.search,
+                        Positioned(
+                          child: Container(
+                            margin: const EdgeInsets.fromLTRB(20, 60, 20, 20),
+                            width: double.infinity,
+                            child: Column(
+                              children: [
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Image.asset(
+                                      "assets/logor/legend-cinema-logo.png",
+                                      width: 80,
+                                    ),
+                                    Row(
+                                      children: [
+                                        InkWell(
+                                          onTap: () {
+                                            onClickSearchCinema();
+                                          },
+                                          child: const Icon(
+                                            Icons.search,
+                                            size: 27,
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                        const SizedBox(width: 15),
+                                        const Icon(
+                                          Icons.notifications,
                                           size: 27,
                                           color: Colors.white,
+                                        )
+                                      ],
+                                    )
+                                  ],
+                                ),
+                                const SizedBox(height: 20),
+                                InkWell(
+                                  onTap: () {
+                                    onTabAllCinema();
+                                  },
+                                  child: Container(
+                                    width: double.infinity,
+                                    height: 45,
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 15),
+                                    decoration: BoxDecoration(
+                                      color: const Color.fromARGB(
+                                          83, 255, 255, 255),
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          selectFilterCinema,
+                                          style: const TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.white,
+                                          ),
                                         ),
-                                      ),
-                                      const SizedBox(width: 15),
-                                      const Icon(
-                                        Icons.notifications,
-                                        size: 27,
-                                        color: Colors.white,
-                                      )
-                                    ],
-                                  )
-                                ],
-                              ),
-                              const SizedBox(height: 20),
-                              InkWell(
-                                onTap: () {
-                                  onTabAllCinema();
-                                },
-                                child: Container(
-                                  width: double.infinity,
-                                  height: 45,
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 15),
-                                  decoration: BoxDecoration(
-                                    color:
-                                        const Color.fromARGB(83, 255, 255, 255),
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        selectFilterCinema,
-                                        style: const TextStyle(
-                                          fontWeight: FontWeight.bold,
+                                        const Icon(
+                                          Icons.keyboard_arrow_down_rounded,
                                           color: Colors.white,
                                         ),
-                                      ),
-                                      const Icon(
-                                        Icons.keyboard_arrow_down_rounded,
-                                        color: Colors.white,
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
                                 ),
-                              ),
-                              const SizedBox(height: 20),
-                              Container(
-                                width: double.infinity,
-                                height: 500,
-                                decoration: BoxDecoration(
-                                  color: Colors.red,
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                child: Image.asset(
-                                  'assets/Image/Movie/1.jpg',
-                                  fit: BoxFit.fitWidth,
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 20),
-                Container(
-                  width: double.infinity,
-                  margin: const EdgeInsets.symmetric(horizontal: 20),
-                  height: 64,
-                  decoration: BoxDecoration(
-                    color: const Color.fromARGB(61, 255, 255, 255),
-                    borderRadius: BorderRadius.circular(100),
-                  ),
-                  child: Stack(
-                    children: [
-                      AnimatedContainer(
-                        duration: const Duration(milliseconds: 240),
-                        transform: Matrix4.translationValues(martrixX, 0, 0),
-                        width: 180,
-                        height: double.infinity,
-                        margin: const EdgeInsets.symmetric(
-                            horizontal: 7, vertical: 5),
-                        decoration: BoxDecoration(
-                          color: Colors.red,
-                          borderRadius: BorderRadius.circular(100),
-                        ),
-                      ),
-                      Positioned(
-                        top: 23,
-                        left: 43,
-                        child: InkWell(
-                          onTap: () {
-                            onClickTextNowShowing(true);
-                          },
-                          child: const Text(
-                            "Now Showing",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w600,
+                                const SizedBox(height: 20),
+                                Container(
+                                  width: double.infinity,
+                                  height: 500,
+                                  decoration: BoxDecoration(
+                                    color: Colors.red,
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: Image.asset(
+                                    'assets/Image/Movie/1.jpg',
+                                    fit: BoxFit.fitWidth,
+                                  ),
+                                )
+                              ],
                             ),
                           ),
-                        ),
-                      ),
-                      Positioned(
-                        top: 23,
-                        right: 49,
-                        child: InkWell(
-                          onTap: () {
-                            onClickTextNowShowing(false);
-                          },
-                          child: const Text(
-                            "Coming Soon",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 20),
-                Container(
-                  margin: const EdgeInsets.fromLTRB(20, 0, 0, 0),
-                  child: const SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                      children: [
-                        Scheduleshow(day: 10, mon: "JAN", week: "Mon"),
-                        Scheduleshow(day: 11, mon: "JAN", week: "Thu"),
-                        Scheduleshow(day: 12, mon: "JAN", week: "Fri"),
-                        Scheduleshow(day: 13, mon: "JAN", week: "Sun"),
-                        Scheduleshow(day: 14, mon: "JAN", week: "Mun"),
-                        Scheduleshow(day: 15, mon: "JAN", week: "Web"),
+                        )
                       ],
                     ),
                   ),
-                ),
-                const SizedBox(height: 15),
-                Container(
-                  margin: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-                  child: const Row(
-                    children: [
-                      Text(
-                        textAlign: TextAlign.left,
-                        "All Showing",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18,
+                  const SizedBox(height: 20),
+                  Container(
+                    width: double.infinity,
+                    margin: const EdgeInsets.symmetric(horizontal: 20),
+                    height: 64,
+                    decoration: BoxDecoration(
+                      color: const Color.fromARGB(61, 255, 255, 255),
+                      borderRadius: BorderRadius.circular(100),
+                    ),
+                    child: Stack(
+                      children: [
+                        AnimatedContainer(
+                          duration: const Duration(milliseconds: 240),
+                          transform: Matrix4.translationValues(martrixX, 0, 0),
+                          width: 180,
+                          height: double.infinity,
+                          margin: const EdgeInsets.symmetric(
+                              horizontal: 7, vertical: 5),
+                          decoration: BoxDecoration(
+                            color: Colors.red,
+                            borderRadius: BorderRadius.circular(100),
+                          ),
                         ),
-                      ),
-                      SizedBox(height: 15),
-                    ],
+                        Positioned(
+                          top: 23,
+                          left: 43,
+                          child: InkWell(
+                            onTap: () {
+                              onClickTextNowShowing(true);
+                            },
+                            child: const Text(
+                              "Now Showing",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          top: 23,
+                          right: 49,
+                          child: InkWell(
+                            onTap: () {
+                              onClickTextNowShowing(false);
+                            },
+                            child: const Text(
+                              "Coming Soon",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
                   ),
-                )
-              ],
+                  const SizedBox(height: 20),
+                  Container(
+                    margin: const EdgeInsets.fromLTRB(20, 0, 0, 0),
+                    child: const SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: [
+                          Scheduleshow(day: 10, mon: "JAN", week: "Mon"),
+                          Scheduleshow(day: 11, mon: "JAN", week: "Thu"),
+                          Scheduleshow(day: 12, mon: "JAN", week: "Fri"),
+                          Scheduleshow(day: 13, mon: "JAN", week: "Sun"),
+                          Scheduleshow(day: 14, mon: "JAN", week: "Mun"),
+                          Scheduleshow(day: 15, mon: "JAN", week: "Web"),
+                        ],
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 15),
+                  Container(
+                    margin: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+                    child: const Row(
+                      children: [
+                        Text(
+                          textAlign: TextAlign.left,
+                          "All Showing",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18,
+                          ),
+                        ),
+                        SizedBox(height: 15),
+                      ],
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
         ),

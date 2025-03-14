@@ -71,6 +71,14 @@ flutter:
     - assets/Image/branch/mid.jpg
     - assets/Image/branch/meanchey.jpg
     - assets/Image/branch/kmal.jpg
+    - assets/Image/advertise/1.jpeg
+    - assets/Image/offers/1.jpeg
+    - assets/Image/offers/2.jpeg
+    - assets/Image/offers/3.jpeg
+    - assets/Image/offers/4.jpeg
+    - assets/Image/offers/5.jpeg
+    - assets/Image/offers/6.jpeg
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
