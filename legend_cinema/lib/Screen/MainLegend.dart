@@ -18,7 +18,7 @@ class Mainlegend extends StatefulWidget {
 class MainlegendState extends State<Mainlegend> {
   double matrixTab = 0;
   var _selectedIndex = 0;
-  var typeMenu = "";
+  var typeMenu = "Home";
   void onSelectNavigationBar(index) {
     print(index);
     setState(() {
