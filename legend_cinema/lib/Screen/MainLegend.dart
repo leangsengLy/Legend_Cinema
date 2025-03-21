@@ -68,7 +68,6 @@ class MainlegendState extends State<Mainlegend> {
 
   @override
   Widget build(BuildContext context) {
-    print(typeMenu);
     if (typeMenu == "Home") {
       content = const Homescreen();
     } else if (typeMenu == "Offers") {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:legend_cinema/Component/cinema/CardLocationCinema.dart';
+import 'package:legend_cinema/Data/Cinema/Cinema.dart';
 
 class Cinema extends StatefulWidget {
   const Cinema({super.key});
@@ -65,34 +66,20 @@ class SearchCinemaState extends State<Cinema> {
                     const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
                 width: double.infinity,
                 height: MediaQuery.of(context).size.height,
-                child: const Center(
+                child: Center(
                   child: SingleChildScrollView(
                     scrollDirection: Axis.vertical,
                     child: Column(
                       children: [
-                        SizedBox(height: 16),
-                        CardLocationCinema(
-                          pathImage: "assets/Image/branch/seihanok.jpg",
-                        ),
-                        SizedBox(height: 16),
-                        CardLocationCinema(
-                            pathImage: "assets/Image/branch/kmal.jpg"),
-                        SizedBox(height: 16),
-                        CardLocationCinema(
-                            pathImage: "assets/Image/branch/meanchey.jpg"),
-                        SizedBox(height: 16),
-                        CardLocationCinema(
-                            pathImage: "assets/Image/branch/mid.jpg"),
-                        SizedBox(height: 16),
-                        CardLocationCinema(
-                            pathImage: "assets/Image/branch/noro.jpg"),
-                        SizedBox(height: 16),
-                        CardLocationCinema(
-                            pathImage: "assets/Image/branch/oly.jpg"),
-                        SizedBox(height: 16),
-                        CardLocationCinema(
-                            pathImage: "assets/Image/branch/squ.jpg"),
-                        SizedBox(height: 16),
+                        ...listCinema.map(
+                          (val) {
+                            return CardLocationCinema(
+                              location: val.location,
+                              name: val.name,
+                              pathImage: val.urlImage,
+                            );
+                          },
+                        ).toList(),
                       ],
                     ),
                   ),

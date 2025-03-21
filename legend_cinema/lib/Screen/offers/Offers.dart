@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:legend_cinema/Component/cinema/CardLocationCinema.dart';
 import 'package:legend_cinema/Component/offers/CardOffer.dart';
+import 'package:legend_cinema/Data/Offer/Offer.dart';
 
 class Offers extends StatefulWidget {
   const Offers({super.key});
@@ -64,38 +65,43 @@ class SearchCinemaState extends State<Offers> {
                         fit: BoxFit.cover,
                       ),
                     ),
-                    const SizedBox(height: 16),
-                    const Text(
-                      "What's we offer",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 17,
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                    const Cardoffer(
-                      pathImage: "assets/Image/offers/1.jpeg",
-                    ),
-                    const SizedBox(height: 16),
-                    const Cardoffer(
-                      pathImage: "assets/Image/offers/2.jpeg",
-                    ),
-                    const SizedBox(height: 16),
-                    const Cardoffer(
-                      pathImage: "assets/Image/offers/3.jpeg",
-                    ),
-                    const SizedBox(height: 16),
-                    const Cardoffer(
-                      pathImage: "assets/Image/offers/4.jpeg",
-                    ),
-                    const SizedBox(height: 16),
-                    const Cardoffer(
-                      pathImage: "assets/Image/offers/5.jpeg",
-                    ),
-                    const SizedBox(height: 16),
-                    const Cardoffer(
-                      pathImage: "assets/Image/offers/6.jpeg",
-                    ),
+                    ...listOffers.map(
+                      (val) {
+                        return Cardoffer(
+                          pathImage: val.UrlImage,
+                          description: val.description,
+                        );
+                      },
+                    ).toList(),
+
+                    // const Text(
+                    //   "What's we offer",
+                    //   style: TextStyle(
+                    //     color: Colors.white,
+                    //     fontSize: 17,
+                    //   ),
+                    // ),
+                    // const SizedBox(height: 10),
+                    // const SizedBox(height: 16),
+                    // const Cardoffer(
+                    //   pathImage: "assets/Image/offers/2.jpeg",
+                    // ),
+                    // const SizedBox(height: 16),
+                    // const Cardoffer(
+                    //   pathImage: "assets/Image/offers/3.jpeg",
+                    // ),
+                    // const SizedBox(height: 16),
+                    // const Cardoffer(
+                    //   pathImage: "assets/Image/offers/4.jpeg",
+                    // ),
+                    // const SizedBox(height: 16),
+                    // const Cardoffer(
+                    //   pathImage: "assets/Image/offers/5.jpeg",
+                    // ),
+                    // const SizedBox(height: 16),
+                    // const Cardoffer(
+                    //   pathImage: "assets/Image/offers/6.jpeg",
+                    // ),
                   ],
                 ),
               ),

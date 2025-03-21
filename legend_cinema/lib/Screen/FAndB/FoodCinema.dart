@@ -36,7 +36,7 @@ class FoodCinema extends StatelessWidget {
             children: [
               Container(
                 width: double.infinity,
-                padding: EdgeInsets.fromLTRB(20, 20, 0, 0),
+                padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
                 alignment: Alignment.centerLeft,
                 height: 80,
                 decoration: const BoxDecoration(
