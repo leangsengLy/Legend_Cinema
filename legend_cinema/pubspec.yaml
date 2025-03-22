@@ -36,6 +36,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
   flutter_riverpod: ^2.6.1
+  google_fonts: ^6.2.1
 
 dev_dependencies:
   flutter_test:
@@ -79,6 +80,7 @@ flutter:
     - assets/Image/offers/3.jpeg
     - assets/Image/offers/4.jpeg
     - assets/Image/offers/5.jpeg
+    - assets/Image/icon/gift.png
     - assets/Image/offers/6.jpeg
 
 

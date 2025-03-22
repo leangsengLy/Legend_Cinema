@@ -5,6 +5,7 @@ import 'package:legend_cinema/Screen/FAndB/FoodCinema.dart';
 import 'package:legend_cinema/Screen/Home/HomeScreen.dart';
 import 'package:legend_cinema/Screen/cinema/Cinema.dart';
 import 'package:legend_cinema/Screen/more/More.dart';
+import 'package:legend_cinema/Screen/more/account.dart';
 import 'package:legend_cinema/Screen/offers/Offers.dart';
 
 class Mainlegend extends StatefulWidget {
@@ -77,7 +78,7 @@ class MainlegendState extends State<Mainlegend> {
     } else if (typeMenu == "Cinema") {
       content = const Cinema();
     } else if (typeMenu == "More") {
-      content = const More();
+      content = const Account();
     }
     return Scaffold(
       body: Stack(
