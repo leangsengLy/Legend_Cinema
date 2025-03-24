@@ -1,0 +1,7 @@
+{
+  "hello": "Hello",
+  "language": "Language",
+  "@hello": {
+    "description": "A greeting"
+  }
+}

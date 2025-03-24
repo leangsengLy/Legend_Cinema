@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:legend_cinema/Component/More/Account/tab_account.dart';
+import 'package:legend_cinema/Component/Screen/default_screen_background.dart';
+import 'package:legend_cinema/Pages/contact.dart';
+import 'package:legend_cinema/Pages/language.dart';
 
 class Account extends StatefulWidget {
   const Account({super.key});
@@ -10,6 +13,46 @@ class Account extends StatefulWidget {
 }
 
 class AccountState extends State<Account> {
+  void onSelectLanguage(String selected) {
+    print(selected);
+  }
+
+  void onClickTabFeature(String title) {
+    Widget? contentTab = Center(
+      child: Text(title),
+    );
+    if (title == "Contact us") {
+      contentTab = const Contact();
+    }
+    if (title == "System Language") {
+      contentTab = Language(
+        onSelectLanguage: onSelectLanguage,
+      );
+    }
+    print(title);
+    Navigator.push(
+      context,
+      PageRouteBuilder(
+        pageBuilder: (context, animation, secondaryAnimation) =>
+            DefaultScreenBackground(
+          title: title,
+          content: contentTab!,
+        ),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          var begin = const Offset(1.0, 0.0);
+          var end = Offset.zero;
+          var curve = Curves.ease;
+          var tween =
+              Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+          return SlideTransition(
+            position: animation.drive(tween),
+            child: child,
+          );
+        },
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -211,30 +254,39 @@ class AccountState extends State<Account> {
               ),
             ),
             const SizedBox(height: 20),
-            const TabAccount(
-              itemTab: [
-                {"label": "English", "icon": Icons.language}
+            TabAccount(
+              isHasIcon: true,
+              onClickTabFeature: onClickTabFeature,
+              itemTab: const [
+                {"label": "System Language", "icon": Icons.language}
               ],
               title: "Language",
             ),
-            const TabAccount(
-              itemTab: [
+            TabAccount(
+              isHasIcon: true,
+              onClickTabFeature: onClickTabFeature,
+              itemTab: const [
                 {"label": "News & Acticity", "icon": Icons.new_releases}
               ],
               title: "What's new?",
             ),
-            const TabAccount(
-              itemTab: [
+            TabAccount(
+              isHasIcon: true,
+              onClickTabFeature: onClickTabFeature,
+              itemTab: const [
                 {"label": "Notifications", "icon": Icons.notifications_active}
               ],
               title: "Notifications",
             ),
-            const TabAccount(
-              itemTab: [
+            TabAccount(
+              isHasIcon: true,
+              onClickTabFeature: onClickTabFeature,
+              itemTab: const [
                 {"label": "Abous us", "icon": Icons.account_box},
                 {"label": "Contact us", "icon": Icons.call},
                 {"label": "Privacy Policy", "icon": Icons.privacy_tip},
                 {"label": "Term & Conditions", "icon": Icons.text_format_sharp},
+                {"label": "Feature Product", "icon": Icons.category},
               ],
               title: "About us",
             ),
