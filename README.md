@@ -1,7 +1,4 @@
 # Legend_Cinema
-# A first-level heading
-## A second-level heading
-### A third-level heading
 Flutter and Spring Boot Project 09-03-2025 10:31PM
 * Project Legend using for only me Ly leang seng (Ly zee)
 > [!NOTE]
@@ -18,3 +15,12 @@ Flutter and Spring Boot Project 09-03-2025 10:31PM
 
 > [!CAUTION]
 > Advises about risks or negative outcomes of certain actions.
+### Preview The Project Legend
+
+
+
+
+
+
+https://github.com/user-attachments/assets/ac9b98cb-0b9b-457e-9df3-c32d5fad9e7f
+
