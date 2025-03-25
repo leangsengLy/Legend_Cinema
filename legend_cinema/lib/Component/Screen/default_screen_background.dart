@@ -1,21 +1,43 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:legend_cinema/Component/Provider/translate/country.dart';
 
-class DefaultScreenBackground extends StatelessWidget {
+class DefaultScreenBackground extends ConsumerWidget {
   const DefaultScreenBackground(
       {super.key, required this.title, required this.content});
   final String title;
   final Widget content;
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
-        title: Text(
-          title,
-          style: const TextStyle(
-            color: Colors.white,
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
+        title: Localizations.override(
+          context: context,
+          locale: Locale(ref.watch(language).toString()),
+          child: Builder(
+            builder: (context) {
+              if (title == "System Language") {
+                return Text(
+                  AppLocalizations.of(context)!.system_language,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                );
+              } else {
+                return Text(
+                  AppLocalizations.of(context)!.language,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                );
+              }
+            },
           ),
         ),
         centerTitle: true, // Th

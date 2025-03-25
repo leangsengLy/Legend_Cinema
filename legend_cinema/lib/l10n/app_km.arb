@@ -1,4 +1,7 @@
 {
     "hello":"សួរស្តី",
-    "language": "ភាសា"
+    "language": "ភាសា",
+    "English": "អង់គ្លេស",
+    "Cambodia": "កម្ពុជា",
+    "system_language": "កន្លែងកំណត់ភាសា"
 }

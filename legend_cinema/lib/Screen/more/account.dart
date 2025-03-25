@@ -1,20 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:legend_cinema/Component/More/Account/tab_account.dart';
 import 'package:legend_cinema/Component/Screen/default_screen_background.dart';
 import 'package:legend_cinema/Pages/contact.dart';
 import 'package:legend_cinema/Pages/language.dart';
+import 'package:legend_cinema/Component/Provider/translate/country.dart';
 
-class Account extends StatefulWidget {
+class Account extends ConsumerStatefulWidget {
   const Account({super.key});
   @override
-  State<Account> createState() {
+  ConsumerState<Account> createState() {
     return AccountState();
   }
 }
 
-class AccountState extends State<Account> {
+class AccountState extends ConsumerState<Account> {
+  var selectLanguage = "";
   void onSelectLanguage(String selected) {
     print(selected);
+    setState(() {
+      if (selected == "English") {
+        ref.watch(language.notifier).state = "en";
+      } else {
+        ref.watch(language.notifier).state = "km";
+      }
+      selectLanguage = selected;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    // You can use ref here if needed, e.g., to initialize something
   }
 
   void onClickTabFeature(String title) {

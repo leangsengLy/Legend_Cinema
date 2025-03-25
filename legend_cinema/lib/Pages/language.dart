@@ -1,9 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:legend_cinema/Component/Provider/translate/country.dart';
 
-class Language extends StatelessWidget {
+class Language extends ConsumerStatefulWidget {
   const Language({super.key, this.onSelectLanguage});
   final Function? onSelectLanguage;
+
+  @override
+  ConsumerState<Language> createState() {
+    return LanguageState();
+  }
+}
+
+class LanguageState extends ConsumerState<Language> {
+  var checkLanguage = "English";
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  void selectLanguage(String language) {
+    setState(() {
+      checkLanguage = language;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -16,7 +38,7 @@ class Language extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Localizations.override(
               context: context,
-              locale: const Locale('en'),
+              locale: Locale(ref.watch(language).toString()),
               child: Builder(
                 builder: (context) {
                   return Text(AppLocalizations.of(context)!.language);
@@ -28,7 +50,8 @@ class Language extends StatelessWidget {
           ...["English", "Cambodia"].map((val) {
             return InkWell(
               onTap: () {
-                onSelectLanguage!(val);
+                widget.onSelectLanguage!(val);
+                selectLanguage(val);
               },
               child: Stack(
                 children: [
@@ -81,17 +104,16 @@ class Language extends StatelessWidget {
                               style: const TextStyle(
                                 color: Colors.white,
                               ),
-                              // style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                              //       color: Theme.of(context).colorScheme.onPrimary,
-                              //     ),
                             ),
                           ],
                         ),
-                        const Icon(
-                          Icons.chevron_right,
-                          color: Colors.white,
-                          size: 30,
-                        )
+                        checkLanguage == val
+                            ? const Icon(
+                                Icons.radio_button_checked,
+                                color: Colors.red,
+                                size: 22,
+                              )
+                            : const Text("")
                       ],
                     ),
                   ),

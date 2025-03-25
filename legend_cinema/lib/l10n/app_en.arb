@@ -1,7 +1,7 @@
 {
   "hello": "Hello",
   "language": "Language",
-  "@hello": {
-    "description": "A greeting"
-  }
+  "english": "English",
+  "cambodia": "Cambodia",
+  "system_language": "System Lanuage"
 }
