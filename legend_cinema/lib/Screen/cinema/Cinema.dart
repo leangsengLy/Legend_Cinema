@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:legend_cinema/Component/cinema/CardLocationCinema.dart';
 import 'package:legend_cinema/Data/Cinema/Cinema.dart';
+import 'package:legend_cinema/appLocalizations.dart';
 
 class Cinema extends StatefulWidget {
   const Cinema({super.key});
@@ -13,6 +14,7 @@ class Cinema extends StatefulWidget {
 class SearchCinemaState extends State<Cinema> {
   @override
   Widget build(BuildContext context) {
+    final localizations = AppLocalizations.of(context)!;
     return Scaffold(
         backgroundColor: Colors.black,
         body: Column(
@@ -29,12 +31,12 @@ class SearchCinemaState extends State<Cinema> {
               ),
               child: Container(
                 margin: const EdgeInsets.fromLTRB(20, 40, 20, 0),
-                child: const Row(
+                child: Row(
                   children: [
                     Text(
                       textAlign: TextAlign.center,
-                      "Cinema",
-                      style: TextStyle(
+                      localizations.translate('Cinema'),
+                      style: const TextStyle(
                         color: Colors.white,
                         fontSize: 19,
                       ),

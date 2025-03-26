@@ -1,7 +1,9 @@
 {
-    "hello":"សួរស្តី",
+    "hello": "សួរស្តី",
+    "welcome": "Bienvenido a la aplicación",
+    "greeting": "¡Hola, {name}!",
     "language": "ភាសា",
     "English": "អង់គ្លេស",
     "Cambodia": "កម្ពុជា",
     "system_language": "កន្លែងកំណត់ភាសា"
-}
+  }

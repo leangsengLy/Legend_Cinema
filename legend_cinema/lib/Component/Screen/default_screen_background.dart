@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:legend_cinema/Component/Provider/translate/country.dart';
+import 'package:legend_cinema/appLocalizations.dart';
 
 class DefaultScreenBackground extends ConsumerWidget {
   const DefaultScreenBackground(
@@ -20,7 +20,7 @@ class DefaultScreenBackground extends ConsumerWidget {
             builder: (context) {
               if (title == "System Language") {
                 return Text(
-                  AppLocalizations.of(context)!.system_language,
+                  AppLocalizations.of(context)!.translate("system_language"),
                   style: const TextStyle(
                     color: Colors.white,
                     fontSize: 16,
@@ -29,7 +29,7 @@ class DefaultScreenBackground extends ConsumerWidget {
                 );
               } else {
                 return Text(
-                  AppLocalizations.of(context)!.language,
+                  AppLocalizations.of(context)!.translate(title),
                   style: const TextStyle(
                     color: Colors.white,
                     fontSize: 16,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:legend_cinema/Component/Provider/translate/country.dart';
+import 'package:legend_cinema/appLocalizations.dart';
 
 class Language extends ConsumerStatefulWidget {
   const Language({super.key, this.onSelectLanguage});
@@ -15,6 +15,7 @@ class Language extends ConsumerStatefulWidget {
 
 class LanguageState extends ConsumerState<Language> {
   var checkLanguage = "English";
+
   @override
   void initState() {
     super.initState();
@@ -28,6 +29,8 @@ class LanguageState extends ConsumerState<Language> {
 
   @override
   Widget build(BuildContext context) {
+    var typeLanuage = ref.watch(language).toString();
+    if (typeLanuage == "km") checkLanguage = "Cambodia";
     return SizedBox(
       width: double.infinity,
       child: Column(
@@ -36,15 +39,7 @@ class LanguageState extends ConsumerState<Language> {
         children: [
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Localizations.override(
-              context: context,
-              locale: Locale(ref.watch(language).toString()),
-              child: Builder(
-                builder: (context) {
-                  return Text(AppLocalizations.of(context)!.language);
-                },
-              ),
-            ),
+            child: Text(AppLocalizations.of(context)!.translate("language")),
           ),
           const SizedBox(height: 10),
           ...["English", "Cambodia"].map((val) {

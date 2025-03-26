@@ -1,0 +1,9 @@
+{
+    "hello": "Hello",
+    "welcome": "Welcome to the app",
+    "greeting": "Hi, {name}!",
+    "language": "Language",
+    "english": "English",
+    "cambodia": "Cambodia",
+    "system_language": "System Lanuage"
+  }
