@@ -26,30 +26,39 @@ class AppLengend extends ConsumerStatefulWidget {
 class AppLengendState extends ConsumerState<AppLengend> {
   @override
   Widget build(BuildContext context) {
+    print(ref.watch(language).toString());
     return MaterialApp(
       locale: Locale(ref.watch(language).toString(), ''),
       title: "Legend By LyZee",
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color.fromARGB(255, 176, 44, 39),
-          brightness: Brightness.dark,
-        ),
-        // textTheme: TextTheme(
-        //   displayLarge: const TextStyle(
-        //     fontSize: 72,
-        //     fontWeight: FontWeight.bold,
-        //   ),
-        //   // ···
-        //   titleLarge: GoogleFonts.oswald(
-        //     fontSize: 16,
-        //   ),
-        //   bodyMedium: GoogleFonts.merriweather(),
-        //   displaySmall: GoogleFonts.pacifico(),
-        // ),
-      ),
+          colorScheme: ColorScheme.fromSeed(
+            seedColor: const Color.fromARGB(255, 176, 44, 39),
+            brightness: Brightness.dark,
+          ),
+          fontFamily: "Nokora"
+          // textTheme: TextTheme(
+          //   displayLarge: const TextStyle(
+          //     fontSize: 72,
+          //     fontWeight: FontWeight.bold,
+          //   ),
+          //   // ···
+          //   titleLarge: GoogleFonts.oswald(
+          //     fontSize: 16,
+          //   ),
+          //   bodyMedium: GoogleFonts.merriweather(),
+          //   displaySmall: GoogleFonts.pacifico(),
+          // ),
+          ),
       supportedLocales: const [
         Locale('en', ''), // English
-        Locale('km', ''), // Khmer
+        Locale('km', ''),
+        Locale('th', ''),
+        Locale('ja', ''),
+        Locale('lo', ''),
+        Locale('vi', ''),
+        Locale('hi', 'IN'),
+        Locale('de', ''),
+        Locale('zh', ''),
       ],
       localizationsDelegates: const [
         AppLocalizationsDelegate(),

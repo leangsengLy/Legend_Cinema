@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:legend_cinema/Component/cinema/CardCinema.dart';
 import 'package:legend_cinema/Component/scheduleShow/ScheduleShow.dart';
 import 'package:legend_cinema/Screen/cinema/SearchCinema.dart';
+import 'package:legend_cinema/appLocalizations.dart';
 
 class Homescreen extends StatefulWidget {
   const Homescreen({super.key});
@@ -330,9 +331,10 @@ class HomescreenStore extends State<Homescreen> {
                             onTap: () {
                               onClickTextNowShowing(true);
                             },
-                            child: const Text(
-                              "Now Showing",
-                              style: TextStyle(
+                            child: Text(
+                              AppLocalizations.of(context)!
+                                  .translate("now_showing"),
+                              style: const TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.w600,
                               ),
@@ -346,9 +348,10 @@ class HomescreenStore extends State<Homescreen> {
                             onTap: () {
                               onClickTextNowShowing(false);
                             },
-                            child: const Text(
-                              "Coming Soon",
-                              style: TextStyle(
+                            child: Text(
+                              AppLocalizations.of(context)!
+                                  .translate("comming_soon"),
+                              style: const TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.w600,
                               ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:legend_cinema/appLocalizations.dart';
 
 class Itemtab extends StatelessWidget {
   const Itemtab(
@@ -10,6 +11,7 @@ class Itemtab extends StatelessWidget {
   final IconData icon;
   final Function onClickTabItem;
   void onClickTab(String label) {
+    print(label);
     onClickTabItem(label);
   }
 
@@ -28,7 +30,7 @@ class Itemtab extends StatelessWidget {
           ),
           const SizedBox(height: 10),
           Text(
-            label,
+            AppLocalizations.of(context)!.translate(label),
             style: const TextStyle(
               color: Colors.white,
             ),

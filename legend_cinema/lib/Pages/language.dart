@@ -31,6 +31,13 @@ class LanguageState extends ConsumerState<Language> {
   Widget build(BuildContext context) {
     var typeLanuage = ref.watch(language).toString();
     if (typeLanuage == "km") checkLanguage = "Cambodia";
+    if (typeLanuage == "th") checkLanguage = "Thailand";
+    if (typeLanuage == "la") checkLanguage = "Lao";
+    if (typeLanuage == "jp") checkLanguage = "Japanes";
+    if (typeLanuage == "vt") checkLanguage = "Vietnam";
+    if (typeLanuage == "zh") checkLanguage = "China";
+    if (typeLanuage == "in") checkLanguage = "india";
+    if (typeLanuage == "de") checkLanguage = "Germany";
     return SizedBox(
       width: double.infinity,
       child: Column(
@@ -42,7 +49,16 @@ class LanguageState extends ConsumerState<Language> {
             child: Text(AppLocalizations.of(context)!.translate("language")),
           ),
           const SizedBox(height: 10),
-          ...["English", "Cambodia"].map((val) {
+          ...[
+            "Cambodia",
+            "English",
+            "Vietnam",
+            "Thailand",
+            "Lao",
+            "Germany",
+            "Japanes",
+            "China",
+          ].map((val) {
             return InkWell(
               onTap: () {
                 widget.onSelectLanguage!(val);
@@ -90,7 +106,21 @@ class LanguageState extends ConsumerState<Language> {
                                 radius: 20,
                                 backgroundImage: AssetImage(val == "English"
                                     ? "assets/Image/flag/uk.png"
-                                    : "assets/Image/flag/cam.png"),
+                                    : val == "Thailand"
+                                        ? "assets/Image/flag/th.png"
+                                        : val == "Lao"
+                                            ? "assets/Image/flag/la.png"
+                                            : val == "Japanes"
+                                                ? "assets/Image/flag/jp.png"
+                                                : val == "Vietnam"
+                                                    ? "assets/Image/flag/vt.png"
+                                                    : val == "india"
+                                                        ? "assets/Image/flag/india.png"
+                                                        : val == "Germany"
+                                                            ? "assets/Image/flag/ger.png"
+                                                            : val == "China"
+                                                                ? "assets/Image/flag/ch.png"
+                                                                : "assets/Image/flag/cam.png"),
                               ),
                             ),
                             const SizedBox(width: 16),

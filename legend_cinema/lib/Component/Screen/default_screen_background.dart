@@ -18,25 +18,14 @@ class DefaultScreenBackground extends ConsumerWidget {
           locale: Locale(ref.watch(language).toString()),
           child: Builder(
             builder: (context) {
-              if (title == "System Language") {
-                return Text(
-                  AppLocalizations.of(context)!.translate("system_language"),
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
-                );
-              } else {
-                return Text(
-                  AppLocalizations.of(context)!.translate(title),
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
-                );
-              }
+              return Text(
+                AppLocalizations.of(context)!.translate(title),
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+              );
             },
           ),
         ),

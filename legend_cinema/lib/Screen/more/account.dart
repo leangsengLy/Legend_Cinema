@@ -5,6 +5,7 @@ import 'package:legend_cinema/Component/Screen/default_screen_background.dart';
 import 'package:legend_cinema/Pages/contact.dart';
 import 'package:legend_cinema/Pages/language.dart';
 import 'package:legend_cinema/Component/Provider/translate/country.dart';
+import 'package:legend_cinema/appLocalizations.dart';
 
 class Account extends ConsumerStatefulWidget {
   const Account({super.key});
@@ -17,12 +18,27 @@ class Account extends ConsumerStatefulWidget {
 class AccountState extends ConsumerState<Account> {
   var selectLanguage = "";
   void onSelectLanguage(String selected) {
+    print("------------");
     print(selected);
     setState(() {
       if (selected == "English") {
         ref.watch(language.notifier).state = "en";
-      } else {
+      } else if (selected == "Cambodia") {
         ref.watch(language.notifier).state = "km";
+      } else if (selected == "Thailand") {
+        ref.watch(language.notifier).state = "th";
+      } else if (selected == "Lao") {
+        ref.watch(language.notifier).state = "lo";
+      } else if (selected == "Japanes") {
+        ref.watch(language.notifier).state = "ja";
+      } else if (selected == "Vietnam") {
+        ref.watch(language.notifier).state = "vi";
+      } else if (selected == "india") {
+        ref.watch(language.notifier).state = "IN";
+      } else if (selected == "Germany") {
+        ref.watch(language.notifier).state = "de";
+      } else if (selected == "China") {
+        ref.watch(language.notifier).state = "zh";
       }
       selectLanguage = selected;
     });
@@ -38,10 +54,10 @@ class AccountState extends ConsumerState<Account> {
     Widget? contentTab = Center(
       child: Text(title),
     );
-    if (title == "Contact us") {
+    if (title == "contact_us") {
       contentTab = const Contact();
     }
-    if (title == "System Language") {
+    if (title == "system_language") {
       contentTab = Language(
         onSelectLanguage: onSelectLanguage,
       );
@@ -90,12 +106,12 @@ class AccountState extends ConsumerState<Account> {
               ),
               child: Container(
                 margin: const EdgeInsets.fromLTRB(20, 40, 20, 0),
-                child: const Row(
+                child: Row(
                   children: [
                     Text(
                       textAlign: TextAlign.center,
-                      "Account",
-                      style: TextStyle(
+                      AppLocalizations.of(context)!.translate("account"),
+                      style: const TextStyle(
                         color: Colors.white,
                         fontSize: 19,
                       ),
@@ -142,9 +158,9 @@ class AccountState extends ConsumerState<Account> {
                             ),
                           ),
                           const SizedBox(width: 10),
-                          const Text(
-                            "Login",
-                            style: TextStyle(
+                          Text(
+                            AppLocalizations.of(context)!.translate("login"),
+                            style: const TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
                             ),
@@ -188,9 +204,9 @@ class AccountState extends ConsumerState<Account> {
                             ),
                           ),
                           const SizedBox(width: 10),
-                          const Text(
-                            "Signup",
-                            style: TextStyle(
+                          Text(
+                            AppLocalizations.of(context)!.translate("signup"),
+                            style: const TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
                             ),
@@ -275,37 +291,37 @@ class AccountState extends ConsumerState<Account> {
               isHasIcon: true,
               onClickTabFeature: onClickTabFeature,
               itemTab: const [
-                {"label": "System Language", "icon": Icons.language}
+                {"label": "system_language", "icon": Icons.language}
               ],
-              title: "Language",
+              title: "language",
             ),
             TabAccount(
               isHasIcon: true,
               onClickTabFeature: onClickTabFeature,
               itemTab: const [
-                {"label": "News & Acticity", "icon": Icons.new_releases}
+                {"label": "news_and_activity", "icon": Icons.new_releases}
               ],
-              title: "What's new?",
+              title: "news",
             ),
             TabAccount(
               isHasIcon: true,
               onClickTabFeature: onClickTabFeature,
               itemTab: const [
-                {"label": "Notifications", "icon": Icons.notifications_active}
+                {"label": "notification", "icon": Icons.notifications_active}
               ],
-              title: "Notifications",
+              title: "notification",
             ),
             TabAccount(
               isHasIcon: true,
               onClickTabFeature: onClickTabFeature,
               itemTab: const [
-                {"label": "Abous us", "icon": Icons.account_box},
-                {"label": "Contact us", "icon": Icons.call},
-                {"label": "Privacy Policy", "icon": Icons.privacy_tip},
-                {"label": "Term & Conditions", "icon": Icons.text_format_sharp},
-                {"label": "Feature Product", "icon": Icons.category},
+                {"label": "about_us", "icon": Icons.account_box},
+                {"label": "contact_us", "icon": Icons.call},
+                {"label": "privacy_policy", "icon": Icons.privacy_tip},
+                {"label": "term_condition", "icon": Icons.text_format_sharp},
+                {"label": "feature_product", "icon": Icons.category},
               ],
-              title: "About us",
+              title: "about_us",
             ),
             const SizedBox(height: 70)
           ],

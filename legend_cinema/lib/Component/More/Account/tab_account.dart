@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:legend_cinema/appLocalizations.dart';
 
 class TabAccount extends StatelessWidget {
   const TabAccount(
@@ -22,7 +23,7 @@ class TabAccount extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Text(
-              title,
+              AppLocalizations.of(context)!.translate(title),
               style: const TextStyle(
                 color: Colors.white,
               ),
@@ -70,7 +71,7 @@ class TabAccount extends StatelessWidget {
                         ),
                         const SizedBox(width: 10),
                         Text(
-                          val['label'],
+                          AppLocalizations.of(context)!.translate(val['label']),
                           style: const TextStyle(
                             color: Colors.white,
                           ),

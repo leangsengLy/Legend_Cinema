@@ -91,9 +91,23 @@ flutter:
 
     - assets/Image/flag/cam.png
     - assets/Image/flag/uk.png
+    - assets/Image/flag/vt.png
+    - assets/Image/flag/la.png
+    - assets/Image/flag/th.png
+    - assets/Image/flag/india.png
+    - assets/Image/flag/ch.png
+    - assets/Image/flag/ger.png
+    - assets/Image/flag/jp.png
     
     - assets/lang/en.json
     - assets/lang/km.json
+    - assets/lang/th.json
+    - assets/lang/ja.json
+    - assets/lang/vi.json
+    - assets/lang/lo.json
+    - assets/lang/de.json
+    - assets/lang/zh.json
+    - assets/lang/IN.json
 
 
 
@@ -108,17 +122,16 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
-  #   - family: Trajan Pro
-  #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
+  fonts:
+    - family: Nokora
+      fonts:
+        - asset: assets/font/Nokora/Nokora-Black.ttf
+        - asset: assets/font/Nokora/Nokora-Bold.ttf
+        - asset: assets/font/Nokora/Nokora-Light.ttf
+        - asset: assets/font/Nokora/Nokora-Regular.ttf
+        - asset: assets/font/Nokora/Nokora-Thin.ttf
+          style: italic
+ 
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
