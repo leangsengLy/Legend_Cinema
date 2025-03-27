@@ -40,8 +40,17 @@ dependencies:
   cupertino_icons: ^1.0.8
   flutter_riverpod: ^2.6.1
   google_fonts: ^6.2.1
+  flutter_launcher_icons: ^0.14.3
+  carousel_slider: ^5.0.0
   
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/Image/flag/movie.png"
+  adaptive_icon_background: "#580000"
+  # adaptive_icon_foreground: "assets/icon_foreground.png"
 
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -69,6 +78,14 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/Image/Movie/1.jpg
+    - assets/Image/Movie/2.jpg
+    - assets/Image/Movie/3.jpg
+    - assets/Image/Movie/coming.jpg
+    - assets/Image/Movie/4.jpg
+    - assets/Image/Movie/5.jpg
+    - assets/Image/Movie/6.jpg
+    - assets/Image/Movie/7.jpg
+    - assets/Image/Movie/8.jpg
     - assets/logor/legend-cinema-logo.png
     - assets/logor/legend-cinema-logo.png
     - assets/Image/branch/eden.jpg

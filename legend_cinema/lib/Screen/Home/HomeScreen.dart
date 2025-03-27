@@ -1,7 +1,9 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui';
 import 'package:legend_cinema/Component/cinema/CardCinema.dart';
 import 'package:legend_cinema/Component/scheduleShow/ScheduleShow.dart';
+import 'package:legend_cinema/Data/movie/data.dart';
 import 'package:legend_cinema/Screen/cinema/SearchCinema.dart';
 import 'package:legend_cinema/appLocalizations.dart';
 
@@ -14,9 +16,19 @@ class Homescreen extends StatefulWidget {
 }
 
 class HomescreenStore extends State<Homescreen> {
+  final List<String> imgList = [
+    'assets/Image/Movie/5.jpg',
+    'assets/Image/Movie/6.jpg',
+    'assets/Image/Movie/7.jpg',
+    'assets/Image/Movie/8.jpg',
+    'assets/Image/Movie/4.jpg',
+    'assets/Image/Movie/3.jpg',
+    'assets/Image/Movie/2.jpg',
+    'assets/Image/Movie/1.jpg',
+  ];
   var selectFilterCinema = "All Cinema";
   double martrixX = 0;
-
+  var slidebgImage = 0;
   void onClickTextNowShowing(bool isClickShowing) {
     setState(() {
       martrixX = isClickShowing ? 0 : 180;
@@ -197,7 +209,7 @@ class HomescreenStore extends State<Homescreen> {
                     child: Stack(
                       children: [
                         Image.asset(
-                          "assets/Image/Movie/1.jpg",
+                          imgList[slidebgImage],
                           width: double.infinity,
                           height: double.infinity,
                           fit: BoxFit.cover,
@@ -282,18 +294,52 @@ class HomescreenStore extends State<Homescreen> {
                                   ),
                                 ),
                                 const SizedBox(height: 20),
-                                Container(
-                                  width: double.infinity,
-                                  height: 500,
-                                  decoration: BoxDecoration(
-                                    color: Colors.red,
-                                    borderRadius: BorderRadius.circular(10),
+                                CarouselSlider(
+                                  options: CarouselOptions(
+                                    height: 500.0, // Height of the carousel
+                                    autoPlay: true, // Auto play slides
+                                    autoPlayInterval: const Duration(
+                                      seconds: 4,
+                                    ), // Time between slides
+                                    enlargeCenterPage:
+                                        true, // Enlarge the center item
+                                    aspectRatio:
+                                        16 / 9, // Aspect ratio of items
+                                    viewportFraction:
+                                        0.8, // How much of adjacent items to show
+                                    onPageChanged: (index, reason) {
+                                      setState(() {
+                                        slidebgImage = index;
+                                      });
+                                    },
                                   ),
-                                  child: Image.asset(
-                                    'assets/Image/Movie/1.jpg',
-                                    fit: BoxFit.fitWidth,
-                                  ),
-                                )
+                                  items: imgList
+                                      .map((item) => Container(
+                                            margin: const EdgeInsets.all(5.0),
+                                            child: ClipRRect(
+                                              borderRadius:
+                                                  const BorderRadius.all(
+                                                      Radius.circular(5.0)),
+                                              child: Image.asset(
+                                                item,
+                                                fit: BoxFit.cover,
+                                              ),
+                                            ),
+                                          ))
+                                      .toList(),
+                                ),
+                                // Container(
+                                //   width: double.infinity,
+                                //   height: 500,
+                                //   decoration: BoxDecoration(
+                                //     color: Colors.red,
+                                //     borderRadius: BorderRadius.circular(10),
+                                //   ),
+                                //   child: Image.asset(
+                                //     'assets/Image/Movie/1.jpg',
+                                //     fit: BoxFit.fitWidth,
+                                //   ),
+                                // )
                               ],
                             ),
                           ),
@@ -395,7 +441,110 @@ class HomescreenStore extends State<Homescreen> {
                         SizedBox(height: 15),
                       ],
                     ),
-                  )
+                  ),
+                  const SizedBox(height: 15),
+                  ...listMovie.map((val) {
+                    return Column(
+                      children: [
+                        Container(
+                          margin: const EdgeInsets.symmetric(horizontal: 20),
+                          width: double.infinity,
+                          height: 320,
+                          child: SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                              children: [
+                                Container(
+                                  width: 180,
+                                  height: double.infinity,
+                                  decoration: const BoxDecoration(),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Image.asset(
+                                        val.uirlImage,
+                                        fit: BoxFit.cover,
+                                        height: 260,
+                                      ),
+                                      const SizedBox(height: 10),
+                                      Row(
+                                        children: [
+                                          Text(val.date),
+                                          const SizedBox(width: 10),
+                                          Container(
+                                            width: 39,
+                                            padding: const EdgeInsets.all(1),
+                                            decoration: const BoxDecoration(
+                                              color: Colors.white,
+                                              borderRadius: BorderRadius.all(
+                                                Radius.circular(6),
+                                              ),
+                                            ),
+                                            child: Text(
+                                              val.type,
+                                              textAlign: TextAlign.center,
+                                              style: const TextStyle(
+                                                color: Colors.black,
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                      Text(val.title)
+                                    ],
+                                  ),
+                                ),
+                                const SizedBox(width: 20),
+                                Container(
+                                  width: 180,
+                                  height: double.infinity,
+                                  decoration: const BoxDecoration(),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Image.asset(
+                                        "assets/Image/Movie/coming.jpg",
+                                        fit: BoxFit.cover,
+                                        height: 260,
+                                      ),
+                                      const SizedBox(height: 10),
+                                      Row(
+                                        children: [
+                                          Text(val.date),
+                                          const SizedBox(width: 10),
+                                          Container(
+                                            width: 39,
+                                            padding: const EdgeInsets.all(1),
+                                            decoration: const BoxDecoration(
+                                              color: Colors.white,
+                                              borderRadius: BorderRadius.all(
+                                                Radius.circular(6),
+                                              ),
+                                            ),
+                                            child: Text(
+                                              val.type,
+                                              textAlign: TextAlign.center,
+                                              style: const TextStyle(
+                                                color: Colors.black,
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                      const Text("Comming Soon")
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 20),
+                      ],
+                    );
+                  }).toList(),
                 ],
               ),
             ),

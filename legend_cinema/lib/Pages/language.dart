@@ -32,9 +32,9 @@ class LanguageState extends ConsumerState<Language> {
     var typeLanuage = ref.watch(language).toString();
     if (typeLanuage == "km") checkLanguage = "Cambodia";
     if (typeLanuage == "th") checkLanguage = "Thailand";
-    if (typeLanuage == "la") checkLanguage = "Lao";
-    if (typeLanuage == "jp") checkLanguage = "Japanes";
-    if (typeLanuage == "vt") checkLanguage = "Vietnam";
+    if (typeLanuage == "lo") checkLanguage = "Lao";
+    if (typeLanuage == "ja") checkLanguage = "Japanes";
+    if (typeLanuage == "vi") checkLanguage = "Vietnam";
     if (typeLanuage == "zh") checkLanguage = "China";
     if (typeLanuage == "in") checkLanguage = "india";
     if (typeLanuage == "de") checkLanguage = "Germany";

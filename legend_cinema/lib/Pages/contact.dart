@@ -16,7 +16,7 @@ class Contact extends StatelessWidget {
               "icon": Icons.alternate_email,
             },
           ],
-          title: "Contact Info",
+          title: "contact_info",
         ),
         SizedBox(height: 14),
         TabAccount(
@@ -27,7 +27,7 @@ class Contact extends StatelessWidget {
               "icon": Icons.alternate_email,
             },
           ],
-          title: "Advertising & Partnership",
+          title: "advertising_and_partnership",
         ),
       ],
     );
