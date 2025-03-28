@@ -86,6 +86,12 @@ flutter:
     - assets/Image/Movie/6.jpg
     - assets/Image/Movie/7.jpg
     - assets/Image/Movie/8.jpg
+    - assets/Image/Movie/9.jpg
+    - assets/Image/Movie/10.jpg
+    - assets/Image/Movie/11.jpg
+    - assets/Image/Movie/12.jpg
+    - assets/Image/Movie/13.jpg
+
     - assets/logor/legend-cinema-logo.png
     - assets/logor/legend-cinema-logo.png
     - assets/Image/branch/eden.jpg
@@ -105,6 +111,14 @@ flutter:
     - assets/Image/offers/5.jpeg
     - assets/Image/icon/gift.png
     - assets/Image/offers/6.jpeg
+
+    - assets/Image/news/1.jpeg
+    - assets/Image/news/2.jpeg
+    - assets/Image/news/3.jpeg
+    - assets/Image/news/4.jpeg
+    - assets/Image/news/5.jpeg
+    - assets/Image/news/6.jpeg
+    - assets/Image/news/7.jpeg
 
     - assets/Image/flag/cam.png
     - assets/Image/flag/uk.png

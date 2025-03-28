@@ -5,6 +5,7 @@ import 'package:legend_cinema/Component/Screen/default_screen_background.dart';
 import 'package:legend_cinema/Pages/contact.dart';
 import 'package:legend_cinema/Pages/language.dart';
 import 'package:legend_cinema/Component/Provider/translate/country.dart';
+import 'package:legend_cinema/Pages/news.dart';
 import 'package:legend_cinema/appLocalizations.dart';
 
 class Account extends ConsumerStatefulWidget {
@@ -61,6 +62,9 @@ class AccountState extends ConsumerState<Account> {
       contentTab = Language(
         onSelectLanguage: onSelectLanguage,
       );
+    }
+    if (title == "news_and_activity") {
+      contentTab = const News();
     }
     print(title);
     Navigator.push(

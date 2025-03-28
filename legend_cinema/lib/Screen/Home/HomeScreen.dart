@@ -25,6 +25,11 @@ class HomescreenStore extends State<Homescreen> {
     'assets/Image/Movie/3.jpg',
     'assets/Image/Movie/2.jpg',
     'assets/Image/Movie/1.jpg',
+    'assets/Image/Movie/9.jpg',
+    'assets/Image/Movie/10.jpg',
+    'assets/Image/Movie/11.jpg',
+    'assets/Image/Movie/12.jpg',
+    'assets/Image/Movie/13.jpg',
   ];
   var selectFilterCinema = "All Cinema";
   double martrixX = 0;
