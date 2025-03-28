@@ -36,15 +36,15 @@ class MainlegendState extends State<Mainlegend> {
     });
     setState(() {
       if (label == "Cinema") {
-        matrixTab = 165;
+        matrixTab = 170;
       } else if (label == "Offers") {
-        matrixTab = 80;
+        matrixTab = 85;
       } else if (label == "Home") {
-        matrixTab = 0;
+        matrixTab = 3;
       } else if (label == "More") {
-        matrixTab = 313;
+        matrixTab = 323;
       } else if (label == "F&B") {
-        matrixTab = 243;
+        matrixTab = 251;
       }
       //code below using for make slide from left ,top,right,bottom
       // Navigator.push(

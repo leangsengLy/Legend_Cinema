@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:legend_cinema/Component/More/Account/tab_account.dart';
 import 'package:legend_cinema/Component/Screen/default_screen_background.dart';
+import 'package:legend_cinema/Pages/about_us.dart';
 import 'package:legend_cinema/Pages/contact.dart';
 import 'package:legend_cinema/Pages/language.dart';
 import 'package:legend_cinema/Component/Provider/translate/country.dart';
 import 'package:legend_cinema/Pages/news.dart';
+import 'package:legend_cinema/Pages/privacy.dart';
+import 'package:legend_cinema/Pages/term_condition.dart';
 import 'package:legend_cinema/appLocalizations.dart';
 
 class Account extends ConsumerStatefulWidget {
@@ -66,6 +69,18 @@ class AccountState extends ConsumerState<Account> {
     if (title == "news_and_activity") {
       contentTab = const News();
     }
+    if (title == "about_us") {
+      contentTab = const AboutUs();
+    }
+    if (title == "privacy_policy") {
+      contentTab = Privacy(
+        title: title,
+      );
+    }
+    if (title == "term_condition") {
+      contentTab = const TermCondition();
+    }
+
     print(title);
     Navigator.push(
       context,
