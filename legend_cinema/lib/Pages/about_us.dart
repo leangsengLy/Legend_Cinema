@@ -48,8 +48,24 @@ class AboutUs extends StatelessWidget {
                             ),
                             const SizedBox(height: 20),
                             Text(
+                              AppLocalizations.of(context)!
+                                  .translate('''Legend Cinema is the no. 
+1 and the first International Standard Cinema in Cambodia, created and operated by Khmer since 2011. Our rapid growth and expansion from 1 to 13 cinema locations in the past 12 years across the country, has shown our strength in delivery and influence in the film and entertainment industry. 
+Today, we have successfully implemented and deployed advanced cinema technologies and levelled up our offerings, beyond cinema norms. Our team is dedicated to providing top tier immersive cinema experience and excellent services with the essence of Khmer hospitality. With our new direction in place, we are determined to inspire, drive change and make an impact in the industry, and exceed expectations. '''),
+                            ),
+                            Text(
                               AppLocalizations.of(context)!.translate(
-                                  '''About_Legend_Cinema_Cambodia_Legend_Cinema_is_the_no_1_and_the_first_International_Standard_Cinema_in_Cambodia_created_and_operated_by_Khmer_since_2011_Our_rapid_growth_and_expansion_from_1_to_13_cinema_locations_in_the_past_12_years_across_the_country_has_shown_our_strength_in_delivery_and_influence_in_the_film_and_entertainment_industry_Today_we_have_successfully_implemented_and_deployed_advanced_cinema_technologies_and_levelled_up_our_offerings_beyond_cinema_norms_Our_team_is_dedicated_to_providing_top_tier_immersive_cinema_experience_and_excellent_services_with_the_essence_of_Khmer_hospitality_With_our_new_direction_in_place_we_are_determined_to_inspire_drive_change_and_make_an_impact_in_the_industry_and_exceed_expectations'''),
+                                  '''We may employ third-party companies and individuals due to the following reasons:
+To facilitate our Service;
+To provide the Service on our behalf;
+To perform Service-related services; or
+To assist us in analyzing how our Service is used.
+We want to inform users of this Service that these third parties have access to your Personal Information. The reason is to perform the tasks assigned to them on our behalf. However, they are obligated not to disclose or use the information for any other purpose.'''),
+                            ),
+                            const SizedBox(height: 20),
+                            const Text(
+                              "@Developer by LyZee Vlogger 28-03-2024",
+                              style: TextStyle(color: Colors.white),
                             ),
                           ],
                         ),
