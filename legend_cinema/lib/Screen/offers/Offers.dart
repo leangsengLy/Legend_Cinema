@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:legend_cinema/Component/cinema/CardLocationCinema.dart';
 import 'package:legend_cinema/Component/offers/CardOffer.dart';
 import 'package:legend_cinema/Data/Offer/Offer.dart';
+import 'package:legend_cinema/Pages/Offers/preview_detail.dart';
 
 class Offers extends StatefulWidget {
   const Offers({super.key});
@@ -12,6 +12,23 @@ class Offers extends StatefulWidget {
 }
 
 class SearchCinemaState extends State<Offers> {
+  void onClickCard(BuildContext context, String urlImage, String description) {
+    Navigator.push(
+      context,
+      PageRouteBuilder(
+        pageBuilder: (context, animation, secondaryAnimation) => PreviewDetail(
+          urlImage: urlImage,
+          description: description,
+        ),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) =>
+            FadeTransition(
+          opacity: animation,
+          child: child,
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,6 +87,7 @@ class SearchCinemaState extends State<Offers> {
                         return Cardoffer(
                           pathImage: val.UrlImage,
                           description: val.description,
+                          onClickCard: onClickCard,
                         );
                       },
                     ).toList(),

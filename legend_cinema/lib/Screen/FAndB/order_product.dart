@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'dart:ui';
-
 import 'package:legend_cinema/Component/FAndB/card_product.dart';
+import 'dart:ui';
 
 class OrderProduct extends StatefulWidget {
   const OrderProduct({super.key});
@@ -51,80 +50,65 @@ class OrderProductState extends State<OrderProduct> {
           ),
         ),
       ),
-      body: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        child: Column(
-          children: [
-            Stack(
+      body: Stack(
+        children: [
+          SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: Column(
               children: [
-                Container(
-                  width: double.infinity,
-                  height: 200,
-                  child: Image.asset(
-                    "assets/Image/offers/1.jpeg",
-                    fit: BoxFit.cover,
-                  ),
-                ),
-                Positioned(
-                  top: 20,
-                  left: 20,
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    width: MediaQuery.of(context).size.width - 50,
-                    height: 50,
-                    decoration: const BoxDecoration(
-                      color: Color.fromARGB(255, 245, 245, 245),
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(10),
+                Stack(
+                  children: [
+                    Container(
+                      width: double.infinity,
+                      height: 200,
+                      child: Image.asset(
+                        "assets/Image/offers/1.jpeg",
+                        fit: BoxFit.cover,
                       ),
                     ),
-                    alignment: Alignment.center,
-                    child: const Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text("Legend Sensok"),
-                        Icon(Icons.arrow_drop_down)
-                      ],
-                    ),
-                  ),
+                  ],
                 ),
-                ClipRect(
-                  child: BackdropFilter(
-                    filter: ImageFilter.blur(sigmaX: 8.0, sigmaY: 8.0),
-                    child: Container(
-                      color: Colors.black
-                          .withOpacity(0.1), // Adjust opacity as needed
-                    ),
+                Container(
+                  padding: const EdgeInsets.fromLTRB(20, 10, 20, 50),
+                  width: double.infinity,
+                  height: MediaQuery.of(context).size.height - 20,
+                  decoration: const BoxDecoration(
+                    color: Colors.black,
                   ),
-                ),
+                  child: const Column(
+                    children: [
+                      SizedBox(height: 20),
+                      CardProduct(),
+                      SizedBox(height: 16),
+                      CardProduct(),
+                      SizedBox(height: 16),
+                      CardProduct(),
+                      SizedBox(height: 16),
+                      CardProduct(),
+                      SizedBox(height: 16),
+                      CardProduct(),
+                      SizedBox(height: 16),
+                      CardProduct(),
+                      SizedBox(height: 16),
+                      CardProduct(),
+                    ],
+                  ),
+                )
               ],
             ),
-            Container(
-              padding: const EdgeInsets.symmetric(
-                vertical: 10,
-                horizontal: 20,
+          ),
+          Positioned(
+            bottom: 0,
+            left: 0,
+            child: Container(
+              width: MediaQuery.of(context).size.width,
+              height: 90,
+              decoration: const BoxDecoration(
+                color: Color.fromARGB(255, 0, 0, 0),
               ),
-              child: const Column(
-                children: [
-                  SizedBox(height: 20),
-                  CardProduct(),
-                  SizedBox(height: 16),
-                  CardProduct(),
-                  SizedBox(height: 16),
-                  CardProduct(),
-                  SizedBox(height: 16),
-                  CardProduct(),
-                  SizedBox(height: 16),
-                  CardProduct(),
-                  SizedBox(height: 16),
-                  CardProduct(),
-                  SizedBox(height: 16),
-                  CardProduct(),
-                ],
-              ),
-            )
-          ],
-        ),
+            ),
+          ),
+        ],
       ),
     );
   }

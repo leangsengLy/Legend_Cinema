@@ -1,7 +1,7 @@
 import 'package:legend_cinema/Model/Cinema/Cinema.dart';
 
 const listCinema = [
-  Cinema("Legend Cinema 271 Mega Mall", "3rd Floor, Chip Mong Mega Mall,",
+  Cinema("Legend Cinema 271 Mega", "3rd Floor, Chip Mong Mega Mall,",
       "assets/Image/branch/squ.jpg"),
   Cinema("Legend Cinema Sihanoukville", "PGB-5-021, 4th Floor of Prince",
       "assets/Image/branch/kmal.jpg"),

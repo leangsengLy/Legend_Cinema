@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:ui';
 
 import 'package:legend_cinema/Component/FAndB/cardLegendFood.dart';
+import 'package:legend_cinema/Data/Cinema/Cinema.dart';
 import 'package:legend_cinema/Screen/FAndB/order_product.dart';
 
 class FoodCinema extends StatelessWidget {
@@ -88,54 +89,20 @@ class FoodCinema extends StatelessWidget {
                     padding: const EdgeInsets.all(20),
                     child: Column(
                       children: [
-                        CardLegendFood(
-                          title: "legendSeksok",
-                          url: "assets/Image/advertise/2.jpeg",
-                          onClickCinemaFood: onClickCinemaFood,
-                        ),
-                        const SizedBox(height: 17),
-                        CardLegendFood(
-                          title: "legendSeksok",
-                          url: "assets/Image/advertise/1.jpeg",
-                          onClickCinemaFood: onClickCinemaFood,
-                        ),
-                        const SizedBox(height: 17),
-                        CardLegendFood(
-                          title: "legendSeksok",
-                          url: "assets/Image/advertise/2.jpeg",
-                          onClickCinemaFood: onClickCinemaFood,
-                        ),
-                        const SizedBox(height: 17),
-                        CardLegendFood(
-                          title: "legendSeksok",
-                          url: "assets/Image/offers/3.jpeg",
-                          onClickCinemaFood: onClickCinemaFood,
-                        ),
-                        const SizedBox(height: 17),
-                        CardLegendFood(
-                          title: "legendSeksok",
-                          url: "assets/Image/offers/4.jpeg",
-                          onClickCinemaFood: onClickCinemaFood,
-                        ),
-                        const SizedBox(height: 17),
-                        CardLegendFood(
-                          title: "legendSeksok",
-                          url: "assets/Image/offers/5.jpeg",
-                          onClickCinemaFood: onClickCinemaFood,
-                        ),
-                        const SizedBox(height: 17),
-                        CardLegendFood(
-                          title: "legendSeksok",
-                          url: "assets/Image/offers/6.jpeg",
-                          onClickCinemaFood: onClickCinemaFood,
-                        ),
-                        const SizedBox(height: 17),
-                        CardLegendFood(
-                          title: "legendSeksok",
-                          url: "assets/Image/offers/2.jpeg",
-                          onClickCinemaFood: onClickCinemaFood,
-                        ),
-                        const SizedBox(height: 17),
+                        ...listCinema.map(
+                          (val) {
+                            return GestureDetector(
+                              onTap: () {
+                                onClickCinemaFood(context);
+                              },
+                              child: CardLegendFood(
+                                title: val.name,
+                                url: val.urlImage,
+                                onClickCinemaFood: onClickCinemaFood,
+                              ),
+                            );
+                          },
+                        ).toList(),
                       ],
                     ),
                   )

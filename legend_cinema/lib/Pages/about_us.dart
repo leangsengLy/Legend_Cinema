@@ -64,7 +64,12 @@ We want to inform users of this Service that these third parties have access to 
                             ),
                             const SizedBox(height: 20),
                             const Text(
-                              "@Developer by LyZee Vlogger 28-03-2024",
+                              "@Developer by Ly LeangSeng 28-03-2024",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            const Text(
+                              textAlign: TextAlign.center,
+                              "@LyZee Vlogger",
                               style: TextStyle(color: Colors.white),
                             ),
                           ],

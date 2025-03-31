@@ -162,6 +162,21 @@ flutter:
         - asset: assets/font/Nokora/Nokora-Regular.ttf
         - asset: assets/font/Nokora/Nokora-Thin.ttf
           style: italic
+    - family: NotoSansKhmer
+      fonts:
+        - asset: assets/font/Inter/NotoSansKhmer_Condensed-Black.ttf
+        - asset: assets/font/Inter/NotoSansKhmer_Condensed-Bold.ttf
+        - asset: assets/font/Inter/NotoSansKhmer_Condensed-ExtraBold.ttf
+        - asset: assets/font/Inter/NotoSansKhmer_Condensed-ExtraLight.ttf
+        - asset: assets/font/Inter/NotoSansKhmer_Condensed-Medium.ttf
+        - asset: assets/font/Inter/NotoSansKhmer_Condensed-Regular.ttf
+        - asset: assets/font/Inter/NotoSansKhmer_SemiCondensed-Medium.ttf
+        - asset: assets/font/Inter/NotoSansKhmer_SemiCondensed-Light.ttf
+        - asset: assets/font/Inter/NotoSansKhmer_SemiCondensed-ExtraLight.ttf
+        - asset: assets/font/Inter/NotoSansKhmer_SemiCondensed-ExtraBold.ttf
+        - asset: assets/font/Inter/NotoSansKhmer_SemiCondensed-Bold.ttf
+        - asset: assets/font/Inter/NotoSansKhmer_SemiCondensed-Black.ttf
+          style: italic
  
   #
   # For details regarding fonts from package dependencies,
