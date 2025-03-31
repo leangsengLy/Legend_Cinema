@@ -14,7 +14,7 @@ class PreviewDetail extends StatelessWidget {
       children: [
         Container(
           width: double.infinity,
-          height: MediaQuery.of(context).size.height - 100,
+          height: MediaQuery.of(context).size.height - 200,
           child: SingleChildScrollView(
             scrollDirection: Axis.vertical,
             child: Column(
