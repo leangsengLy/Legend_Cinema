@@ -123,22 +123,59 @@ class AccountState extends ConsumerState<Account> {
                   end: Alignment.bottomCenter,
                 ),
               ),
-              child: Container(
-                margin: const EdgeInsets.fromLTRB(20, 40, 20, 0),
-                child: Row(
-                  children: [
-                    Text(
-                      textAlign: TextAlign.center,
-                      AppLocalizations.of(context)!.translate("account"),
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 19,
-                      ),
+              child: Column(
+                children: [
+                  Container(
+                    margin: const EdgeInsets.fromLTRB(20, 40, 20, 0),
+                    child: Row(
+                      children: [
+                        Text(
+                          textAlign: TextAlign.center,
+                          AppLocalizations.of(context)!.translate("account"),
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 19,
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
+                  ),
+                ],
+              ),
+            ),
+            ClipRRect(
+              clipBehavior: Clip.hardEdge,
+              borderRadius: BorderRadius.circular(200),
+              child: Container(
+                width: 100,
+                height: 100,
+                padding: const EdgeInsets.all(5),
+                decoration: const BoxDecoration(
+                  border: Border.fromBorderSide(BorderSide(
+                    color: Color.fromARGB(255, 160, 19, 0),
+                    width: 3,
+                  )),
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(200),
+                  ),
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(200),
+                  child: Image.asset(
+                    "assets/Image/ME/1.jpg",
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
             ),
+            const SizedBox(height: 15),
+            const Text(
+              "Ly Zee Vlogger",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 20),
             Padding(
               padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
               child: Row(
