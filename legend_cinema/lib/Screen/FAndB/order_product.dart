@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:legend_cinema/Component/FAndB/card_product.dart';
+import 'package:legend_cinema/Component/FAndB/summary_detail.dart';
 import 'dart:ui';
 
 import 'package:legend_cinema/Model/food/food.dart';
@@ -13,17 +14,134 @@ class OrderProduct extends StatefulWidget {
 }
 
 class OrderProductState extends State<OrderProduct> {
+  void onClickSummaryIcon(
+      BuildContext context, List<Food> selectedFood, double summaryTotal) {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext context) {
+          return Container(
+            height: MediaQuery.of(context).size.height,
+            decoration: const BoxDecoration(
+              color: Color.fromARGB(255, 0, 0, 0),
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(20),
+                topRight: Radius.circular(20),
+              ),
+            ),
+            child: Column(
+              children: [
+                Stack(
+                  children: [
+                    Container(
+                      width: double.infinity,
+                      height: 50,
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      decoration: const BoxDecoration(
+                        color: Colors.black,
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Text(
+                            "Booking Details",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          IconButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            icon: const Icon(
+                              Icons.close,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Positioned(
+                      bottom: 0,
+                      left: 0,
+                      child: Container(
+                        width: MediaQuery.of(context).size.width - 0,
+                        height: 1,
+                        decoration: const BoxDecoration(
+                          gradient: LinearGradient(
+                            colors: [
+                              Color.fromARGB(0, 0, 0, 0),
+                              Color.fromARGB(255, 255, 255, 255),
+                              Color.fromARGB(0, 0, 0, 0),
+                            ],
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+                const SizedBox(height: 10),
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: selectedFood.length,
+                    itemBuilder: (context, index) {
+                      return ListTile(
+                        title: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              selectedFood[index].name,
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 15,
+                              ),
+                            ),
+                            Text(
+                              "\$${selectedFood[index].price * selectedFood[index].item}",
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 15,
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  ),
+                ),
+                SummaryDetail(
+                  summaryTotal: summaryTotal,
+                  selectedFood: selectedFood,
+                ),
+              ],
+            ),
+          );
+        });
+  }
+
   double summaryTotal = 0;
-  void onAddFood(Food food, bool isAdd) {
+  List<Food> selectedFood = [];
+  void onAddFood(Food food, bool isAdd, int countItem) {
     // Handle the action when the food is added
     setState(() {
       if (!isAdd) {
         summaryTotal -= food.price;
-        if (summaryTotal < 0) {
+        food.setItem(food.item - 1 > 0 ? food.item - 1 : 0);
+        if (countItem == 1) {
+          if (selectedFood.contains(food)) {
+            selectedFood.remove(food);
+          }
+        }
+        if (summaryTotal <= 0) {
           summaryTotal = 0;
         }
       } else {
         summaryTotal += food.price;
+        food.setItem(food.getItem() + 1);
+        print(food.getItem());
+        if (!selectedFood.contains(food)) {
+          selectedFood.add(food);
+        }
       }
     });
   }
@@ -97,7 +215,9 @@ class OrderProductState extends State<OrderProduct> {
                       ...Food.foods.map((food) {
                         return CardProduct(
                           food: food,
-                          onAddFood: onAddFood,
+                          onAddFood: (Food food, bool isAdd, int countItem) {
+                            onAddFood(food, isAdd, countItem);
+                          },
                         );
                       }).toList(),
                     ],
@@ -115,80 +235,10 @@ class OrderProductState extends State<OrderProduct> {
               decoration: const BoxDecoration(
                 color: Color.fromARGB(255, 0, 0, 0),
               ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    padding: const EdgeInsets.all(20),
-                    child: Row(
-                      children: [
-                        Container(
-                          width: 80,
-                          height: 40,
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(
-                              width: 2,
-                              color: const Color.fromARGB(255, 255, 255, 255),
-                            ),
-                          ),
-                          child: const Text(
-                            "0",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 17,
-                            ),
-                          ),
-                        ),
-                        const SizedBox(width: 10),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Text(
-                              "Summary",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 11,
-                              ),
-                            ),
-                            const SizedBox(height: 2),
-                            Row(
-                              children: [
-                                Text(
-                                  "\$ $summaryTotal",
-                                  style: const TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 17,
-                                  ),
-                                ),
-                              ],
-                            )
-                          ],
-                        ),
-                        const SizedBox(width: 20),
-                        const Icon(
-                          Icons.keyboard_arrow_down,
-                          size: 30,
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    padding: const EdgeInsets.all(20),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        // Handle button press
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color.fromARGB(255, 134, 16, 0),
-                      ),
-                      child: const Text("Continue"),
-                    ),
-                  ),
-                ],
+              child: SummaryDetail(
+                summaryTotal: summaryTotal,
+                selectedFood: selectedFood,
+                onClickSummaryIcon: onClickSummaryIcon,
               ),
             ),
           ),

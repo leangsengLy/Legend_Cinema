@@ -151,10 +151,12 @@ class AccountState extends ConsumerState<Account> {
                 height: 100,
                 padding: const EdgeInsets.all(5),
                 decoration: const BoxDecoration(
-                  border: Border.fromBorderSide(BorderSide(
-                    color: Color.fromARGB(255, 160, 19, 0),
-                    width: 3,
-                  )),
+                  border: Border.fromBorderSide(
+                    BorderSide(
+                      color: Color.fromARGB(255, 160, 19, 0),
+                      width: 3,
+                    ),
+                  ),
                   borderRadius: BorderRadius.all(
                     Radius.circular(200),
                   ),

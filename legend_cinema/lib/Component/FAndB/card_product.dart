@@ -3,7 +3,7 @@ import 'package:legend_cinema/Model/food/food.dart';
 
 class CardProduct extends StatefulWidget {
   const CardProduct({super.key, required this.onAddFood, required this.food});
-  final void Function(Food food, bool isAdd) onAddFood;
+  final void Function(Food food, bool isAdd, int countItem) onAddFood;
   final Food food;
   @override
   State<CardProduct> createState() => CardProductState();
@@ -82,7 +82,7 @@ class CardProductState extends State<CardProduct> {
                                         GestureDetector(
                                           onTap: () => setState(() {
                                             widget.onAddFood(
-                                                widget.food, false);
+                                                widget.food, false, countItem);
                                             countItem--;
                                           }),
                                           child: const Icon(Icons.remove),
@@ -96,7 +96,8 @@ class CardProductState extends State<CardProduct> {
                                         ),
                                         GestureDetector(
                                           onTap: () => setState(() {
-                                            widget.onAddFood(widget.food, true);
+                                            widget.onAddFood(
+                                                widget.food, true, countItem);
                                             countItem++;
                                           }),
                                           child: const Icon(Icons.add),
@@ -120,7 +121,8 @@ class CardProductState extends State<CardProduct> {
                                             EdgeInsets.zero),
                                       ),
                                       onPressed: () {
-                                        widget.onAddFood(widget.food, true);
+                                        widget.onAddFood(
+                                            widget.food, true, countItem);
                                         setState(() {
                                           countItem++;
                                         });
