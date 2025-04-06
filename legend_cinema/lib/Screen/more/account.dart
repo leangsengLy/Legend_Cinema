@@ -9,6 +9,7 @@ import 'package:legend_cinema/Component/Provider/translate/country.dart';
 import 'package:legend_cinema/Pages/news.dart';
 import 'package:legend_cinema/Pages/privacy.dart';
 import 'package:legend_cinema/Pages/term_condition.dart';
+import 'package:legend_cinema/Screen/Login/login.dart';
 import 'package:legend_cinema/appLocalizations.dart';
 
 class Account extends ConsumerStatefulWidget {
@@ -89,6 +90,31 @@ class AccountState extends ConsumerState<Account> {
             DefaultScreenBackground(
           title: title,
           content: contentTab!,
+        ),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          var begin = const Offset(1.0, 0.0);
+          var end = Offset.zero;
+          var curve = Curves.ease;
+          var tween =
+              Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+          return SlideTransition(
+            position: animation.drive(tween),
+            child: child,
+          );
+        },
+      ),
+    );
+  }
+
+  void onClickButtonLoginOrSignUp(String type) {
+    print("Login or Sign Up");
+    Navigator.push(
+      context,
+      PageRouteBuilder(
+        pageBuilder: (context, animation, secondaryAnimation) =>
+            DefaultScreenBackground(
+          content: Login(),
+          title: type,
         ),
         transitionsBuilder: (context, animation, secondaryAnimation, child) {
           var begin = const Offset(1.0, 0.0);
@@ -216,11 +242,14 @@ class AccountState extends ConsumerState<Account> {
                             ),
                           ),
                           const SizedBox(width: 10),
-                          Text(
-                            AppLocalizations.of(context)!.translate("login"),
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
+                          GestureDetector(
+                            onTap: () => onClickButtonLoginOrSignUp("login"),
+                            child: Text(
+                              AppLocalizations.of(context)!.translate("login"),
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           )
                         ],
@@ -262,11 +291,14 @@ class AccountState extends ConsumerState<Account> {
                             ),
                           ),
                           const SizedBox(width: 10),
-                          Text(
-                            AppLocalizations.of(context)!.translate("signup"),
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
+                          GestureDetector(
+                            onTap: () => onClickButtonLoginOrSignUp("signup"),
+                            child: Text(
+                              AppLocalizations.of(context)!.translate("signup"),
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           )
                         ],
