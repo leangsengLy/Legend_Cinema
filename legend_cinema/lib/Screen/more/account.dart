@@ -113,7 +113,9 @@ class AccountState extends ConsumerState<Account> {
       PageRouteBuilder(
         pageBuilder: (context, animation, secondaryAnimation) =>
             DefaultScreenBackground(
-          content: Login(),
+          content: Login(
+            typeForm: type,
+          ),
           title: type,
         ),
         transitionsBuilder: (context, animation, secondaryAnimation, child) {
