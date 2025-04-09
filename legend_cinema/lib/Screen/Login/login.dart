@@ -8,6 +8,21 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  final username = TextEditingController();
+  final password = TextEditingController();
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    username.dispose();
+    password.dispose();
+    super.dispose();
+  }
+
+  void onClickLoginOrSignup() {
+    print(username.text);
+    print(password.text);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -28,10 +43,11 @@ class _LoginState extends State<Login> {
           ),
           const SizedBox(height: 20),
           widget.typeForm == "login"
-              ? const TextField(
-                  decoration: InputDecoration(
+              ? TextField(
+                  controller: username,
+                  decoration: const InputDecoration(
                     labelText: "Username",
-                    border: OutlineInputBorder(
+                    border: const OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                       borderSide: BorderSide(color: Colors.blue, width: 2),
                     ),
@@ -47,10 +63,11 @@ class _LoginState extends State<Login> {
                   width: 0,
                 ),
           widget.typeForm == "login"
-              ? const TextField(
+              ? TextField(
+                  controller: password,
                   keyboardType: TextInputType.visiblePassword,
                   obscureText: true,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                       borderSide: BorderSide(color: Colors.blue, width: 2),
@@ -83,6 +100,7 @@ class _LoginState extends State<Login> {
           widget.typeForm != "login"
               ? Expanded(
                   child: TextField(
+                    keyboardType: const TextInputType.numberWithOptions(),
                     decoration: InputDecoration(
                       prefixIcon: IconButton(
                         icon: const Icon(Icons.public),
@@ -103,19 +121,25 @@ class _LoginState extends State<Login> {
               : const SizedBox(
                   width: 0,
                 ),
-          Container(
-            width: double.infinity,
-            height: 50,
-            decoration: BoxDecoration(
-              color: Colors.red,
-              borderRadius: BorderRadius.circular(50),
-            ),
-            alignment: Alignment.center,
-            child: Text(
-              widget.typeForm == "login" ? "Login" : "SignUp",
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 15,
+          InkWell(
+            onTap: () {
+              onClickLoginOrSignup();
+            },
+            radius: 20,
+            child: Container(
+              width: double.infinity,
+              height: 50,
+              decoration: BoxDecoration(
+                color: Colors.red,
+                borderRadius: BorderRadius.circular(50),
+              ),
+              alignment: Alignment.center,
+              child: Text(
+                widget.typeForm == "login" ? "Login" : "SignUp",
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 15,
+                ),
               ),
             ),
           )
