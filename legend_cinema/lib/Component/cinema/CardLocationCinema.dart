@@ -27,8 +27,8 @@ class CardLocationCinema extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 height: 190,
-                child: Image.asset(
-                  pathImage,
+                child: Image.network(
+                  "http://10.0.2.2:8080$pathImage",
                   fit: BoxFit.cover,
                 ),
               ),

@@ -1,12 +1,16 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:legend_cinema/Component/FAndB/card_product.dart';
 import 'package:legend_cinema/Component/FAndB/summary_detail.dart';
 import 'dart:ui';
+import 'package:http/http.dart' as http;
 
 import 'package:legend_cinema/Model/food/food.dart';
 
 class OrderProduct extends StatefulWidget {
-  const OrderProduct({super.key});
+  const OrderProduct({super.key, required this.cinemaId});
+  final int cinemaId;
   @override
   State<OrderProduct> createState() {
     return OrderProductState();
@@ -14,6 +18,30 @@ class OrderProduct extends StatefulWidget {
 }
 
 class OrderProductState extends State<OrderProduct> {
+  List<Food> foods = [];
+
+  @override
+  void initState() {
+    super.initState();
+    GetListProduct();
+  }
+
+  void GetListProduct() async {
+    final Map<String, dynamic> requestBody = {"cinemaId": widget.cinemaId};
+    final response = await http.post(
+      Uri.parse("http://10.0.2.2:8080/api/cinema/list"),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8', // Set headers
+      },
+      body: jsonEncode(requestBody),
+    );
+    final List<dynamic> foodList = jsonDecode(response.body);
+    setState(() {
+      foods = foodList.map((data) => Food.fromJson(data)).toList();
+    });
+    print(foods);
+  }
+
   void onClickSummaryIcon(
       BuildContext context, List<Food> selectedFood, double summaryTotal) {
     showModalBottomSheet(
@@ -212,7 +240,7 @@ class OrderProductState extends State<OrderProduct> {
                   ),
                   child: Column(
                     children: [
-                      ...Food.foods.map((food) {
+                      ...foods.map((food) {
                         return CardProduct(
                           food: food,
                           onAddFood: (Food food, bool isAdd, int countItem) {

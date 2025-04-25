@@ -7,12 +7,13 @@ import 'package:legend_cinema/Screen/FAndB/order_product.dart';
 
 class FoodCinema extends StatelessWidget {
   const FoodCinema({super.key});
-  void onClickCinemaFood(BuildContext context) {
+  void onClickCinemaFood(BuildContext context, int cinemaId) {
     Navigator.push(
       context,
       PageRouteBuilder(
-        pageBuilder: (context, animation, secondaryAnimation) =>
-            const OrderProduct(),
+        pageBuilder: (context, animation, secondaryAnimation) => OrderProduct(
+          cinemaId: cinemaId,
+        ),
         transitionsBuilder: (context, animation, secondaryAnimation, child) {
           var begin = const Offset(1.0, 0.0);
           var end = Offset.zero;
@@ -93,12 +94,14 @@ class FoodCinema extends StatelessWidget {
                           (val) {
                             return GestureDetector(
                               onTap: () {
-                                onClickCinemaFood(context);
+                                onClickCinemaFood(context, val.id);
                               },
                               child: CardLegendFood(
                                 title: val.name,
                                 url: val.urlImage,
-                                onClickCinemaFood: onClickCinemaFood,
+                                onClickCinemaFood: (BuildContext context) {
+                                  onClickCinemaFood(context, val.id);
+                                },
                               ),
                             );
                           },

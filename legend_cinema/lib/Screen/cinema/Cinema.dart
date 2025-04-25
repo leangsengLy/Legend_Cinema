@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:legend_cinema/Component/cinema/CardLocationCinema.dart';
@@ -37,28 +38,30 @@ class SearchCinemaState extends State<Cinema> {
       listCinema = [];
     });
     final Map<String, dynamic> requestBody = {
-      'id': 18,
-      'price': '',
+      'id': 0,
     };
     print("call api list cinema");
     final response = await http.post(
-      Uri.parse("http://192.168.1.5:8080/api/food/list"),
+      Uri.parse("http://10.0.2.2:8080/api/cinema/list"),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8', // Set headers
       },
       body: jsonEncode(requestBody),
     );
-    List<Map<String, dynamic>> body = jsonDecode(response.body);
-    print(body);
-    body.map((val) => {print(val)});
-    body.map((v) => {print(v['name'])});
-    setState(() {
-      isLoadingFirst = false;
-      listCinema.add(
-        const CinemaData("Legend Cinema 271 Mega",
-            "3rd Floor, Chip Mong Mega Mall,", "assets/Image/branch/squ.jpg"),
-      );
-    });
+    if (response.statusCode == 200) {
+      setState(() {
+        isLoadingFirst = false;
+        listCinema.add(
+          const CinemaData(1, "Legend Cinema 271 Mega",
+              "3rd Floor, Chip Mong Mega Mall,", "assets/Image/branch/squ.jpg"),
+        );
+      });
+      // Parse JSON array
+      final List<dynamic> jsonList = jsonDecode(response.body);
+      print(jsonList);
+      // Map JSON objects to Food models
+      listCinema = jsonList.map((json) => CinemaData.fromJson(json)).toList();
+    }
   }
 
   @override

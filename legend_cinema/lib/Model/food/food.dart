@@ -21,6 +21,16 @@ class Food {
     return item;
   }
 
+  factory Food.fromJson(Map<String, dynamic> json) {
+    print(json);
+    return Food(
+        name: json['englishName'],
+        price: json['price'],
+        item: json['qty'],
+        imagePath: json['imagePath'],
+        description: json['englishName']);
+  }
+
   static List<Food> foods = [
     Food(
       name: "Combo1",

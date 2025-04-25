@@ -45,8 +45,8 @@ class CardLegendFood extends StatelessWidget {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
                         ),
-                        child: Image.asset(
-                          url,
+                        child: Image.network(
+                          "http://10.0.2.2:8080$url",
                           fit: BoxFit.cover,
                         ),
                       ),
