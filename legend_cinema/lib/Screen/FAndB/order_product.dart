@@ -23,18 +23,19 @@ class OrderProductState extends State<OrderProduct> {
   @override
   void initState() {
     super.initState();
-    GetListProduct();
+    getListProduct();
   }
 
-  void GetListProduct() async {
-    final Map<String, dynamic> requestBody = {"cinemaId": widget.cinemaId};
+  void getListProduct() async {
+    final Map<String, dynamic> requestBody = {"id": widget.cinemaId};
     final response = await http.post(
-      Uri.parse("http://10.0.2.2:8080/api/cinema/list"),
+      Uri.parse("http://10.0.2.2:8080/api/food/list"),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8', // Set headers
       },
       body: jsonEncode(requestBody),
     );
+    print(response.body);
     final List<dynamic> foodList = jsonDecode(response.body);
     setState(() {
       foods = foodList.map((data) => Food.fromJson(data)).toList();
@@ -234,22 +235,28 @@ class OrderProductState extends State<OrderProduct> {
                 Container(
                   padding: const EdgeInsets.fromLTRB(20, 10, 20, 50),
                   width: double.infinity,
-                  height: MediaQuery.of(context).size.height - 20,
+                  // height: MediaQuery.of(context).size.height - 20,
+                  height: 600,
                   decoration: const BoxDecoration(
                     color: Colors.black,
                   ),
-                  child: Column(
-                    children: [
-                      ...foods.map((food) {
-                        return CardProduct(
-                          food: food,
-                          onAddFood: (Food food, bool isAdd, int countItem) {
-                            onAddFood(food, isAdd, countItem);
-                          },
-                        );
-                      }).toList(),
-                    ],
-                  ),
+                  child: foods.isNotEmpty
+                      ? Column(
+                          children: [
+                            ...foods.map((food) {
+                              return CardProduct(
+                                food: food,
+                                onAddFood:
+                                    (Food food, bool isAdd, int countItem) {
+                                  onAddFood(food, isAdd, countItem);
+                                },
+                              );
+                            }).toList(),
+                          ],
+                        )
+                      : const Center(
+                          child: Text("Please create food in your cinema!"),
+                        ),
                 )
               ],
             ),

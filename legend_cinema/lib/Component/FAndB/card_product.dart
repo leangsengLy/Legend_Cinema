@@ -34,8 +34,8 @@ class CardProductState extends State<CardProduct> {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  child: Image.asset(
-                    widget.food.imagePath,
+                  child: Image.network(
+                    "http://10.0.2.2:8080" + widget.food.imagePath,
                     fit: BoxFit.cover,
                   ),
                 ),
