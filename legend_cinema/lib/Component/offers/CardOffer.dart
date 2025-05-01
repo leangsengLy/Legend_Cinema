@@ -5,9 +5,11 @@ class Cardoffer extends StatelessWidget {
       {super.key,
       required this.pathImage,
       required this.description,
+      this.label,
       this.onClickCard});
   final String pathImage;
   final String description;
+  final String? label;
   final Function(BuildContext context, String urlImage, String description)?
       onClickCard;
   @override
@@ -40,8 +42,8 @@ class Cardoffer extends StatelessWidget {
                 SizedBox(
                   width: double.infinity,
                   height: 190,
-                  child: Image.asset(
-                    pathImage,
+                  child: Image.network(
+                    "http://10.0.2.2:8080$pathImage",
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -50,7 +52,7 @@ class Cardoffer extends StatelessWidget {
                   children: [
                     Expanded(
                       child: Text(
-                        description,
+                        label!,
                         style: const TextStyle(
                           color: Colors.white,
                         ),

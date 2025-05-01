@@ -1,7 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:legend_cinema/Component/offers/CardOffer.dart';
 import 'package:legend_cinema/Data/Offer/Offer.dart';
+import 'package:legend_cinema/Model/Offer/Offer.dart';
 import 'package:legend_cinema/Pages/Offers/preview_detail.dart';
+import 'package:http/http.dart' as http;
 
 class Offers extends StatefulWidget {
   const Offers({super.key});
@@ -12,6 +16,47 @@ class Offers extends StatefulWidget {
 }
 
 class SearchCinemaState extends State<Offers> {
+  var isLoadingFirst = false;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    setState(() {
+      isLoadingFirst = true;
+    });
+    getOfferList();
+  }
+
+  void getOfferList() async {
+    setState(() {
+      listOffers = [];
+    });
+    final Map<String, dynamic> requestBody = {
+      'id': 0,
+    };
+    final response = await http.post(
+      Uri.parse("http://10.0.2.2:8080/api/offer/list"),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8', // Set headers
+      },
+      body: jsonEncode(requestBody),
+    );
+    if (response.statusCode == 200) {
+      setState(() {
+        isLoadingFirst = false;
+        // listOffers.add(
+        //   Offer("assets/Image/offers/1.jpeg",
+        //       "Try our new Matcha Popcorn atime even more delightful with this delicious treat."),
+        // );
+      });
+      // Parse JSON array
+      final List<dynamic> jsonList = jsonDecode(response.body);
+      print(jsonList);
+      // Map JSON objects to Food models
+      listOffers = jsonList.map((json) => Offer.fromJson(json)).toList();
+    }
+  }
+
   void onClickCard(BuildContext context, String urlImage, String description) {
     Navigator.push(
       context,
@@ -87,6 +132,7 @@ class SearchCinemaState extends State<Offers> {
                         return Cardoffer(
                           pathImage: val.UrlImage,
                           description: val.description,
+                          label: val.label,
                           onClickCard: onClickCard,
                         );
                       },

@@ -27,8 +27,8 @@ class PreviewDetail extends StatelessWidget {
                   decoration: const BoxDecoration(
                     color: Colors.red,
                   ),
-                  child: Image.asset(
-                    urlImage,
+                  child: Image.network(
+                    "http://10.0.2.2:8080$urlImage",
                     fit: BoxFit.cover,
                   ),
                 ),
