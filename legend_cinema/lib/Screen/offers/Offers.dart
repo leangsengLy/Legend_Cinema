@@ -37,7 +37,7 @@ class SearchCinemaState extends State<Offers> {
     final response = await http.post(
       Uri.parse("http://10.0.2.2:8080/api/offer/list"),
       headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8', // Set headers
+        'Content-Type': 'application/json', // Set headers
       },
       body: jsonEncode(requestBody),
     );
@@ -50,8 +50,9 @@ class SearchCinemaState extends State<Offers> {
         // );
       });
       // Parse JSON array
-      final List<dynamic> jsonList = jsonDecode(response.body);
-      print(jsonList);
+      String decodedData = utf8.decode(response.bodyBytes);
+      final List<dynamic> jsonList = jsonDecode(decodedData);
+      // print(jsonList);
       // Map JSON objects to Food models
       listOffers = jsonList.map((json) => Offer.fromJson(json)).toList();
     }

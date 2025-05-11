@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Cardoffer extends StatelessWidget {
   const Cardoffer(
@@ -53,9 +54,11 @@ class Cardoffer extends StatelessWidget {
                     Expanded(
                       child: Text(
                         label!,
-                        style: const TextStyle(
-                          color: Colors.white,
-                        ),
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 3,
+                        // style: GoogleFonts.notoSansKhmer(
+                        //   fontSize: 20,
+                        // ),
                       ),
                     )
                   ],

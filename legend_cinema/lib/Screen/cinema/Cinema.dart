@@ -57,7 +57,8 @@ class SearchCinemaState extends State<Cinema> {
         );
       });
       // Parse JSON array
-      final List<dynamic> jsonList = jsonDecode(response.body);
+      final List<dynamic> jsonList =
+          jsonDecode(utf8.decode(response.bodyBytes));
       print(jsonList);
       // Map JSON objects to Food models
       listCinema = jsonList.map((json) => CinemaData.fromJson(json)).toList();
