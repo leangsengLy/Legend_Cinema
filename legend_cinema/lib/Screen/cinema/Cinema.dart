@@ -51,10 +51,10 @@ class SearchCinemaState extends State<Cinema> {
     if (response.statusCode == 200) {
       setState(() {
         isLoadingFirst = false;
-        listCinema.add(
-          const CinemaData(1, "Legend Cinema 271 Mega",
-              "3rd Floor, Chip Mong Mega Mall,", "assets/Image/branch/squ.jpg"),
-        );
+        // listCinema.add(
+        //   const CinemaData(1, "Legend Cinema 271 Mega",
+        //       "3rd Floor, Chip Mong Mega Mall,", "assets/Image/branch/squ.jpg"),
+        // );
       });
       // Parse JSON array
       final List<dynamic> jsonList =

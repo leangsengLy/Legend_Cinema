@@ -7,7 +7,7 @@ class CinemaData {
   final int id;
   final String urlImage;
   factory CinemaData.fromJson(Map<String, dynamic> json) {
-    return CinemaData(json['id'], json['englishName'], json['englishName'],
-        json['pathImage']);
+    return CinemaData(
+        json['Id'], json['Name'], json['EnglishName'], json['PathImage']);
   }
 }

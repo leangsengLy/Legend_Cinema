@@ -35,8 +35,7 @@ class OrderProductState extends State<OrderProduct> {
       },
       body: jsonEncode(requestBody),
     );
-    print(response.body);
-    final List<dynamic> foodList = jsonDecode(response.body);
+    final List<dynamic> foodList = jsonDecode(utf8.decode(response.bodyBytes));
     setState(() {
       foods = foodList.map((data) => Food.fromJson(data)).toList();
     });
